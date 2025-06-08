@@ -40,10 +40,12 @@ Y := Scheme(P4, [f2_L, f3_L]);
 C := CoordinateRing(P4);
 
 R<y1, y2, y3, y4, y5, y6> := PolynomialRing(Rationals(), 6);
-S<u, v> := PolynomialRing(R, 6);
+S<u, v> := PolynomialRing(R, 2);
 
 function getLineScheme(v1, v2)
     hom_cs := hom<C -> S | [u * v1[i] + v * v2[i]: i in [1..5]]>;
+    hom_cs(f2_L);
+    Coefficients(hom_cs(f2_L));
     coeffs := Coefficients(hom_cs(f2_L)) cat Coefficients(hom_cs(f3_L));
     return IsProper(ideal<R | coeffs>);
 end function;
