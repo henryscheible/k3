@@ -1,5 +1,7 @@
-R<x0,x1,x2,x3,x4> := PolynomialRing(Rationals(),5);
-A<x0A,x1A,x2A> := PolynomialRing(Rationals(),3);
+p := 47;
+
+R<x0,x1,x2,x3,x4> := PolynomialRing(GF(p),5);
+A<x0A,x1A,x2A> := PolynomialRing(GF(p),3);
 S<y0,y1> := PolynomialRing(A,2);
 phi := hom< R -> S | x0A, x1A, x2A, y0, y1 >;
 
