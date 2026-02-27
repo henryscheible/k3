@@ -1,10 +1,10 @@
 X is smooth over F_47: true
-f6 defining branch locus (a smooth sextic curve): y0^6 + 16*y0^5*y1 +
-23*y0^4*y1^2 + 27*y0^3*y1^3 + 43*y0^2*y1^4 + 23*y0*y1^5 + 22*y1^6 + 24*y0^5*y2 +
-39*y0^4*y1*y2 + 21*y0^3*y1^2*y2 + 39*y0^2*y1^3*y2 + 27*y0*y1^4*y2 + 2*y1^5*y2 +
-39*y0^4*y2^2 + 38*y0^3*y1*y2^2 + 21*y0^2*y1^2*y2^2 + 28*y0*y1^3*y2^2 +
-31*y1^4*y2^2 + 23*y0^3*y2^3 + 19*y0^2*y1*y2^3 + 43*y0*y1^2*y2^3 + 22*y1^3*y2^3 +
-26*y0^2*y2^4 + 41*y0*y1*y2^4 + 8*y1^2*y2^4 + 27*y0*y2^5 + 40*y1*y2^5 + 37*y2^6
+f6 defining branch locus (a smooth sextic curve): 14*b0^6 + 36*b0^5*b1 +
+40*b0^4*b1^2 + 2*b0^3*b1^3 + 38*b0^2*b1^4 + 40*b0*b1^5 + 26*b1^6 + 7*b0^5*b2 +
+29*b0^4*b1*b2 + 12*b0^3*b1^2*b2 + 29*b0^2*b1^3*b2 + 2*b0*b1^4*b2 + 28*b1^5*b2 +
+29*b0^4*b2^2 + 15*b0^3*b1*b2^2 + 12*b0^2*b1^2*b2^2 + 16*b0*b1^3*b2^2 +
+11*b1^4*b2^2 + 40*b0^3*b2^3 + 31*b0^2*b1*b2^3 + 38*b0*b1^2*b2^3 + 26*b1^3*b2^3 +
+35*b0^2*b2^4 + 10*b0*b1*b2^4 + 18*b1^2*b2^4 + 2*b0*b2^5 + 43*b1*b2^5 + b2^6
 sextic curve defined by f6 is smooth (over F_47): true
 computing Weil polynomial using degree 2 model...
 computing Weil polynomial using degree 2 model with a quadratic twist...
@@ -29,6 +29,10 @@ Weil polynomial with twist: [
 20411185409588063059906360356*t^3 + 799438095208865803179665780610*t^2 -
 43835855553952808207685006970115*t + 2766668711962335809450748011342401, 1>
 ]
+Naive point count over F_47: 2269
+Point count from Weil polynomial: 2269
+Point count from twisted Weil polynomial: 2245
+Naive count matches: wp
 f2_L: x0^2 + 44*x0*x1 + 3*x1^2 + 5*x0*x2 + 4*x1*x2 + 5*x2^2 + 46*x0*x3 +
 45*x1*x3 + 44*x2*x3 + 47*x3^2 + 42*x0*x4 + 5*x1*x4 + 47*x4^2
 f3_L: 2*x0^3 + 3*x0^2*x1 + 3*x0*x1^2 + x1^3 + 46*x0*x1*x2 + 44*x1^2*x2 +

@@ -21,20 +21,46 @@ printf "X is smooth over F_%o: %o\n", p, IsNonsingular(Xp);
 
 // COMPUTE f6
 
-M := JacobianMatrix([f2, f3]);
-MSub := Submatrix(M, 1, 4, 2, 2); // Submatrix of determinant computing derivatives with respect to x3, x4 only.
+P2<b0, b1, b2> := ProjectiveSpace(FiniteField(p), 2);
+R2 := CoordinateRing(P2);
+Rfib<y0, y1> := PolynomialRing(R2, 2);
+S := CoordinateRing(P4);
 
-q := Determinant(Submatrix(M, 1, 4, 2, 2)); // ramification locus of rational map P4 - - - > P2
-Z := Scheme(P4, [f2, f3, q]); // Ramification locus of restriction X --> P2
+phi := hom<S -> Rfib | b0, b1, b2, y0, y1>;
 
-P2<y0, y1, y2> := ProjectiveSpace(FiniteField(p), 2);
-f := map<P4 -> P2 | [x0, x1, x2] >; // Projection map P4 -> P2
+F2 := phi(f2);
+F3 := phi(f3);
 
-f6 := Generators(Ideal(f(Z)))[1]; // Generator of branch locus
+function FiberCoeff(f, mon)
+    coeffs, mons := CoefficientsAndMonomials(f);
+    for i in [1..#mons] do
+        if mons[i] eq mon then return coeffs[i]; end if;
+    end for;
+    return R2!0;
+end function;
+
+l0  := FiberCoeff(F2, y0);
+l1  := FiberCoeff(F2, y1);
+q   := FiberCoeff(F2, Rfib!1);
+l00 := FiberCoeff(F3, y0^2);
+l01 := FiberCoeff(F3, y0*y1);
+l11 := FiberCoeff(F3, y1^2);
+q0  := FiberCoeff(F3, y0);
+q1  := FiberCoeff(F3, y1);
+c   := FiberCoeff(F3, Rfib!1);
+
+M := Matrix([[0, l0, l1, q],
+    [l0, 2*l00, l01, q0],
+    [l1, l01, 2*l11, q1],
+    [q, q0, q1, 2*c]]);
+
+f6 := Determinant(M); // Generator of branch locus
+
+Z := Scheme(P2, f6);
 
 printf "f6 defining branch locus (a smooth sextic curve): %o\n", f6;
 
-printf "sextic curve defined by f6 is smooth (over F_%o): %o\n", p, IsNonsingular(f(Z));
+printf "sextic curve defined by f6 is smooth (over F_%o): %o\n", p, IsNonsingular(Z);
 
 // COMPUTE WEIL POLYNOMIAL WITH RESPECT TO f6
 
@@ -57,6 +83,20 @@ wpt2 := Evaluate(wpt2, t);
 
 printf "Weil polynomial without twist: %o\n", Factorization(wp1 * wp2);
 printf "Weil polynomial with twist: %o\n", Factorization(wpt1 * wpt2);
+
+// NAIVE POINT COUNT CHECK
+
+wp := wp1 * wp2;
+wpt := wpt1 * wpt2;
+C := CompanionMatrix(wp);
+Ct := CompanionMatrix(wpt);
+wp_count := Trace(C) + p^2 + 1;
+wpt_count := Trace(Ct) + p^2 + 1;
+naive_count := #Points(Xp);
+printf "Naive point count over F_%o: %o\n", p, naive_count;
+printf "Point count from Weil polynomial: %o\n", wp_count;
+printf "Point count from twisted Weil polynomial: %o\n", wpt_count;
+printf "Naive count matches: %o\n", naive_count eq wp_count select "wp" else (naive_count eq wpt_count select "wpt" else "neither");
 
 // LIFT Xp TO X OVER Q
 
