@@ -48,7 +48,7 @@ printf "X is smooth over F_%o: %o\n", p, IsNonsingular(Xp);
 
 // === STEP 2: Compute f6 (branch sextic) and verify smoothness ===
 
-f6 := Determinant(u*q1 + v*q2 + w*q3);
+f6 := -1 * Determinant(u*q1 + v*q2 + w*q3);
 Z := Scheme(P2, f6);
 printf "f6 defining branch locus (a smooth sextic curve): %o\n", f6;
 printf "sextic curve defined by f6 is smooth (over F_%o): %o\n", p, IsNonsingular(Z);
