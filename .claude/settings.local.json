@@ -3,7 +3,8 @@
     "allow": [
       "mcp__acp__Edit",
       "Bash(magma:*)",
-      "Bash(ps:*)"
+      "Bash(ps:*)",
+      "Bash(ls:*)"
     ]
   }
 }

@@ -53,7 +53,11 @@ Z := Scheme(P2, f6);
 printf "f6 defining branch locus (a smooth sextic curve): %o\n", f6;
 printf "sextic curve defined by f6 is smooth (over F_%o): %o\n", p, IsNonsingular(Z);
 
-// === STEP 3: Compute Weil polynomials for f6 and -f6 ===
+// === STEP 3: Print the tritangent line over F_47 ===
+
+printf "Tritangent lines of f6 over F_%o (should be exactly one): %o\n", p, TriTangentLines(f6);
+
+// === STEP 4: Compute Weil polynomials for f6 and -f6 ===
 
 printf "computing Weil polynomial...\n";
 wp1, wp2 := WeilPolynomialOfDegree2K3Surface(f6);
@@ -70,7 +74,7 @@ wpt2 := Evaluate(wpt2, t);
 printf "Weil polynomial without twist: %o\n", Factorization(wp1 * wp2);
 printf "Weil polynomial with twist: %o\n", Factorization(wpt1 * wpt2);
 
-// === STEP 4: Naive point count check ===
+// === STEP 5: Naive point count check ===
 
 wp := wp1 * wp2;
 wpt := wpt1 * wpt2;
@@ -84,8 +88,9 @@ printf "Point count from Weil polynomial: %o\n", wp_count;
 printf "Point count from twisted Weil polynomial: %o\n", wpt_count;
 printf "Naive count matches: %o\n", naive_count eq wp_count select "wp" else (naive_count eq wpt_count select "wpt" else "neither");
 
-// === STEP 5: Check no tritangent lines over Qbar ===
+// === STEP 6: Check no tritangent lines over Qbar ===
 
 P2Q<u, v, w> := ProjectiveSpace(Rationals(), 2);
 f6_Q := Determinant(u*q1_Q + v*q2_Q + w*q3_Q);
 printf "Tritangent lines of lifted sextic (should be empty): %o\n", TriTangentLines(f6_Q);
+

@@ -6,6 +6,9 @@ f6 defining branch locus (a smooth sextic curve): 13*u^6 + 43*u^5*v + 19*u^4*v^2
 34*u*v^2*w^3 + 17*v^3*w^3 + 41*u^2*w^4 + 32*u*v*w^4 + 21*v^2*w^4 + 46*u*w^5 +
 33*v*w^5 + 17*w^6
 sextic curve defined by f6 is smooth (over F_47): true
+Tritangent lines of f6 over F_47 (should be exactly one): [*
+x + 32*y + 17*z
+*]
 computing Weil polynomial...
 computing Weil polynomial with quadratic twist...
 Weil polynomial without twist: [
